@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html xmlns:th="https://www.thymeleaf.org"
+	xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
+
+<head>
+<meta charset="ISO-8859-1">
+<title>New Contacts</title>
+<link rel="stylesheet" type="text/css" media="all"
+	th:href="@{/CSS/homeCss.css}">
+</head>
+<title>Home Page</title>
+</head>
+<body>
+	<h1>This is a Home Page</h1>
+	<h3>This is an unsecure page that everyone can access</h3>
+	<div sec:authorize="isAuthenticated()">
+		User's Name: <span sec:authentication="name"></span>
+		<br>
+		Roles: <span sec:authentication="principal.authorities"></span>
+		<br>
+		<br>
+		<form action="#" th:action="@{/logout}" method="post">
+			<input type="submit" value="Logout">
+		</form>
+	</div>
+	
+	Go to the <a th:href="@{/viewStudents}">View Students</a><br>
+	Go to the <a th:href="@{/addStudent}">Add Students</a><br>
+</body>
+</html>

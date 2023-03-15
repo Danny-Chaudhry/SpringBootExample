@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html xmlns:th="https://www.thymeleaf.org"
+	xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
+
+<head>
+<meta charset="ISO-8859-1">
+<title>New Student</title>
+<link rel="stylesheet" type="text/css" media="all"
+	th:href="@{/CSS/homeCss.css}">
+</head>
+<body>
+<div id="form">
+	<h1>New Student</h1>
+	<form action="#" th:action="@{/add}" th:object="${student}" >
+	<label for="name">Name: </label><input type="text" id="name" th:field="*{name}" required><br><br>
+	<label for="studentId">studentId: </label><input type="text" maxlength="9" id="studentId" th:field="*{studentId}" required><br><br>
+	<label for="exercises">exercises: </label><input type="number" max="100.00" min="0.00" id="exercises" th:field="*{exercises}"><br><br>
+	<label for="assignment1">Assignment 1: </label><input type="number" max="100.00" min="0.00" th:field="*{assignment1}"><br><br>
+	<label for="assignment2">Assignment 2: </label><input type="number" max="100.00" min="0.00" th:field="*{assignment2}"><br><br>
+	<label for="assignment2">Assignment 3: </label><input type="number" max="100.00" min="0.00" id="assignment3" th:field="*{assignment3}"><br><br>
+	<label for="midterm">MidTerm: </label><input type="number" max="100.00" min="0.00" id="midterm" th:field="*{midterm}"><br><br>
+	<label for="finalExam">final Exam: </label><input type="number" max="100.00" min="0.00" id="finalExam" th:field="*{finalExam}"><br><br>	
+	<input type="submit" value="Add Student"><br><br>
+	</form>
+	
+	<div sec:authorize="isAuthenticated()">
+		User's Name: <span sec:authentication="name"></span>
+		<br>
+		Roles: <span sec:authentication="principal.authorities"></span>
+		<br>
+		<br>
+		<form action="#" th:action="@{/logout}" method="post">
+			<input type="submit" value="Logout">
+		</form>
+	</div>
+	
+	Go to the <a th:href="@{/viewStudents}">View Students</a><br>
+	Go to the <a th:href="@{/}">Home Page</a>
+</div>
+</body>
+</html>

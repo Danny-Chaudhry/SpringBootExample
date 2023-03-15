@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html xmlns:th="https://www.thymeleaf.org"
+	xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
+
+<head>
+<meta charset="ISO-8859-1">
+<title>View Students</title>
+<link rel="stylesheet" type="text/css" media="all"
+	th:href="@{/CSS/viewStudentsCss.css}">
+</head>
+<body>
+	<h1>View Students</h1>
+	<table>
+		<tr>
+			<th>Name</th>
+			<th>Student ID</th>
+			<th>Exercises</th>
+			<th>Assignment 1</th>
+			<th>Assignment 2</th>
+			<th>Assignment 3</th>
+			<th>MidTerm</th>
+			<th>Final Exam</th>
+			<th>Final Grade</th>
+			<th>Letter Grade</th>
+		</tr>	
+		<tr th:each="s : ${students}">
+			<td th:text="${s.name}"></td>
+			<td th:text="${s.studentId}"></td>
+			<td th:text="${s.exercises}"></td>
+			<td th:text="${s.assignment1}"></td>
+			<td th:text="${s.assignment2}"></td>
+			<td th:text="${s.assignment3}"></td>
+			<td th:text="${s.midterm}"></td>
+			<td th:text="${s.finalExam}"></td>
+			<td th:text="${s.finalGrade}"></td>
+			<td th:text="${s.letterGrade}"></td>
+		</tr>
+	</table>
+	
+	<div sec:authorize="isAuthenticated()">
+		User's Name: <span sec:authentication="name"></span>
+		<br>
+		Roles: <span sec:authentication="principal.authorities"></span>
+		<br>
+		<br>
+		<form action="#" th:action="@{/logout}" method="post">
+			<input type="submit" value="Logout">
+		</form>
+	</div>
+	Go to the <a th:href="@{/}">Home Page</a>
+</body>
+</html>
